@@ -133,6 +133,7 @@ async function generateCoverage() {
 
 
   const coverMode = core.getInput('cover-mode');
+  const coverPkg = core.getInput('cover-pkg');
 
   let testArgs;
   try {
@@ -147,7 +148,7 @@ async function generateCoverage() {
   const args = ['test'].concat(testArgs).concat([
     '-covermode', coverMode,
     '-coverprofile', report.gocovPathname,
-    '-coverpkg', './...',
+    '-coverpkg', coverPkg,
     './...'
   ]);
   const {output: testOutput} = await exec('go', args);
